@@ -8,3 +8,8 @@ body {
 #resumen {
     background: white;
 }
+.alerta-roja {
+    background-color: #ffdddd;
+    border-left: 4px solid #ff0000;
+    padding: 10px;
+}
