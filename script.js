@@ -18,3 +18,25 @@ document.getElementById('btn-subir').addEventListener('click', () => {
     };
     reader.readAsArrayBuffer(archivo);
 });
+// Añade después de leer el Excel (en el evento reader.onload)
+const ctx = document.createElement('canvas');
+ctx.id = 'ganttChart';
+document.getElementById('resumen').appendChild(ctx);
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: jsonData.slice(0, 10).map(item => item.Actividad), // Muestra solo 10 actividades
+        datasets: [{
+            label: 'Duración (días)',
+            data: jsonData.slice(0, 10).map(item => parseInt(item["Duración programada"].split(' ')[0])),
+            backgroundColor: '#005a87'
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        scales: {
+            x: { beginAtZero: true }
+        }
+    }
+});
